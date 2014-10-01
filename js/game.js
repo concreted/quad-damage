@@ -91,6 +91,11 @@ function create() {
   enemies.create(500,300, 'enemy');
   enemies.create(300,300, 'enemy');
   enemies.create(400,400, 'enemy');
+
+
+  keys.space.onDown.add(playerShoot, this, player, stars);
+
+
 }
 
 function update() {
@@ -165,44 +170,28 @@ function update() {
   }
 
   //SHOOTING
-  if ((keys.space.isDown)) {
-    var star = stars.create(player.body.x+5, player.body.y+15 , 'star');
-   
-    if (cursors.right.isDown || player.facing === 'right')
-      star.body.velocity.x = 500;
-    else if (cursors.left.isDown || player.facing === 'left')
-      star.body.velocity.x = -500;
+  //if ((keys.space.Pressed)) 
 
-
-    if (cursors.up.isDown || player.facing === 'up')
-      star.body.velocity.y = -500;
-    else if (cursors.down.isDown || player.facing === 'down')
-      star.body.velocity.y = 500;
-
-    
-
-    //  if (player.facing === 'right')
-  //     star.body.velocity.x = 500;
-  //   else if (player.facing === 'left')
-  //     star.body.velocity.x = -500;
-  //   else if (player.facing === 'up')
-  //     star.body.velocity.y = -500;
-    
-  //   if (player.facing === 'left' || player.facing === 'right') {
-  //     star.body.velocity.y = Math.random() * 50;
-  //     if (Math.random() > 0.5)
-  //       star.body.velocity.y = -star.body.velocity.y;
-  //   }
-  //   else {
-  //     star.body.velocity.x = Math.random() * 50;
-  //     if (Math.random() > 0.5)
-  //       star.body.velocity.x = -star.body.velocity.x;  
-  //   }
-  // }
-  }
-
-
+  // ENEMY ACTION
   enemies.callAll('act', null);
+
+}
+
+
+function playerShoot() {
+  //debugger;
+  var star = stars.create(player.body.x+5, player.body.y+15 , 'star');
+  
+  if (cursors.right.isDown || player.facing === 'right')
+    star.body.velocity.x = 500;
+  else if (cursors.left.isDown || player.facing === 'left')
+    star.body.velocity.x = -500;
+
+
+  if (cursors.up.isDown || player.facing === 'up')
+    star.body.velocity.y = -500;
+  else if (cursors.down.isDown || player.facing === 'down')
+    star.body.velocity.y = 500;
 }
 
 
